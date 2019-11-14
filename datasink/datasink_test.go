@@ -20,7 +20,7 @@ var exampleData = struct {
 	},
 }
 
-var anyError = fmt.Errorf("any error")
+var errAny = fmt.Errorf("any error")
 
 func mockErrorHandler(t *testing.T, wantErr error) ErrorHandler {
 	t.Helper()
@@ -29,7 +29,7 @@ func mockErrorHandler(t *testing.T, wantErr error) ErrorHandler {
 		switch wantErr {
 		case nil:
 			assert.NoError(t, err)
-		case anyError:
+		case errAny:
 			assert.Error(t, err)
 		default:
 			assert.EqualError(t, err, wantErr.Error())

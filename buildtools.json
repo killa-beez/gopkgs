@@ -1,0 +1,56 @@
+{
+  "gobin": [
+    {
+      "os": "darwin",
+      "arch": "amd64",
+      "url": "https://github.com/myitcv/gobin/releases/download/v0.0.10/darwin-amd64",
+      "checksum": "84ed966949e06bebd7d006bc343caf9d736932fd8b37df5cb5b268a28d07bd30",
+      "move-from": "darwin-amd64",
+      "bin": "gobin"
+    },
+    {
+      "os": "linux",
+      "arch": "amd64",
+      "url": "https://github.com/myitcv/gobin/releases/download/v0.0.10/linux-amd64",
+      "checksum": "415266d9af98578067051653f5057ea267c51ebf085408df48b118a8b978bac6",
+      "move-from": "linux-amd64",
+      "bin": "gobin"
+    }
+  ],
+  "golangci-lint": [
+    {
+      "os": "darwin",
+      "arch": "amd64",
+      "url": "https://github.com/golangci/golangci-lint/releases/download/v1.21.0/golangci-lint-1.21.0-darwin-amd64.tar.gz",
+      "checksum": "2b2713ec5007e67883aa501eebb81f22abfab0cf0909134ba90f60a066db3760",
+      "symlink": "golangci-lint-1.21.0-darwin-amd64/golangci-lint",
+      "bin": "golangci-lint"
+    },
+    {
+      "os": "linux",
+      "arch": "amd64",
+      "url": "https://github.com/golangci/golangci-lint/releases/download/v1.21.0/golangci-lint-1.21.0-linux-amd64.tar.gz",
+      "checksum": "2c861f8dc56b560474aa27cab0c075991628cc01af3451e27ac82f5d10d5106b",
+      "symlink": "golangci-lint-1.21.0-linux-amd64/golangci-lint",
+      "bin": "golangci-lint"
+    }
+  ],
+  "shellcheck": [
+    {
+      "os": "linux",
+      "arch": "amd64",
+      "url": "https://shellcheck.storage.googleapis.com/shellcheck-v0.7.0.linux-x86_64",
+      "checksum": "c37d4f51e26ec8ab96b03d84af8c050548d7288a47f755ffb57706c6c458e027",
+      "move-from": "shellcheck-v0.7.0.linux-x86_64",
+      "bin": "shellcheck"
+    },
+    {
+      "os": "darwin",
+      "arch": "amd64",
+      "url": "https://shellcheck.storage.googleapis.com/shellcheck-v0.7.0.darwin-x86_64",
+      "checksum": "a5d77cbe4c3e92916bce712b959f6d54392f94bcf8ea84f80ba425a9e72e2afe",
+      "move-from": "shellcheck-v0.7.0.darwin-x86_64",
+      "bin": "shellcheck"
+    }
+  ]
+}
