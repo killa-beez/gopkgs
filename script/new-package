@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+CDPATH="" cd -- "$(dirname -- "$(dirname -- "$0")")"
+
+pkgname="$1"
+[ -n "$pkgname" ] || {
+  echo 'usage: script/new-package <package name>'
+  exit 1
+}
+
+mkdir -p "$pkgname"
+cd "$pkgname"
+go mod init "github.com/killa-beez/gopkgs/$pkgname"
+go mod edit -go=1.12
