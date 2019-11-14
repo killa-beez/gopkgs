@@ -55,7 +55,7 @@ func TestHTTPPostSink_Sink(t *testing.T) {
 	t.Run("bad url", func(t *testing.T) {
 		sink := &HTTPPostSink{
 			Serializer:   mockSerializer(t, exampleData.exStruct, []byte("foo"), nil),
-			ErrorHandler: mockErrorHandler(t, anyError),
+			ErrorHandler: mockErrorHandler(t, errAny),
 			URL:          "http://not.a.real.host",
 		}
 		sink.Sink(exampleData.exStruct)

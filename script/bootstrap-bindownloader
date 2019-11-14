@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -e
+
+CDPATH="" cd -- "$(dirname -- "$(dirname -- "$0")")"
+
+toolsbin="bin"
+dlbin="$toolsbin/bindownloader"
+dltmp="tmp/bindownloader"
+
+[ -f "$dlbin" ] && exit 0
+
+case "$(uname)" in
+"Darwin")
+  wantsum="1bcaf584a46fab6efc4b93170af83a3e576c091a2f0b6439c1846aa292e1cc90"
+  dlurl="https://github.com/WillAbides/bindownloader/releases/download/v0.1.0/bindownloader_0.1.0_darwin_amd64.tar.gz"
+  ;;
+"Linux")
+  wantsum="8ace14482332da88cb4d7f71bb00b31d60f59e7264cbb5d31a6cd1cb0de8951c"
+  dlurl="https://github.com/WillAbides/bindownloader/releases/download/v0.1.0/bindownloader_0.1.0_linux_amd64.tar.gz"
+  ;;
+*)
+  echo unexpected uname: "$(uname)"
+  exit 1
+  ;;
+esac
+
+mkdir -p "$dltmp"
+cleanup() {
+  rm -rf "$dltmp"
+}
+trap cleanup EXIT
+
+(
+  cd "$dltmp"
+  curl -s -o bindownloader.tar.gz -L "$dlurl"
+  gotsum="$(shasum -a 256 bindownloader.tar.gz | cut -d " " -f1)"
+  [ "$gotsum" = "$wantsum" ] || {
+    echo unexpected shasum
+    exit 1
+  }
+  tar -xzf bindownloader.tar.gz
+)
+
+mkdir -p "$toolsbin"
+mv "$dltmp/bindownloader" "$dlbin"
