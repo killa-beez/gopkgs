@@ -4,4 +4,9 @@ set -e
 
 CDPATH="" cd -- "$(dirname -- "$(dirname -- "$0")")"
 
-go test -race ./...
+for f in ./*/go.mod; do
+  (
+    cd "$(dirname "$f")"
+    go test -race ./...
+  )
+done

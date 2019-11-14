@@ -6,4 +6,12 @@ CDPATH="" cd -- "$(dirname -- "$(dirname -- "$0")")"
 
 make -s bin/golangci-lint bin/shellcheck
 bin/shellcheck script/*
-bin/golangci-lint run
+
+linter="$(pwd)/bin/golangci-lint"
+
+for f in ./*/go.mod; do
+  (
+    cd "$(dirname "$f")"
+    "$linter" run
+  )
+done
