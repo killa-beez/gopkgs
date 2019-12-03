@@ -94,8 +94,8 @@ func TestRetry(t *testing.T) {
 		elapsed := time.Since(startTime)
 		assert.NoError(t, err)
 		assert.Equal(t, wantCount, runCount)
-		assert.GreaterOrEqual(t, elapsed.Milliseconds(), wantSleep.Milliseconds())
-		assert.LessOrEqual(t, elapsed.Milliseconds(), 2*wantSleep.Milliseconds())
+		assert.GreaterOrEqual(t, int64(elapsed), int64(wantSleep))
+		assert.LessOrEqual(t, int64(elapsed), 2*int64(wantSleep))
 	})
 
 	t.Run("cancel ctx", func(t *testing.T) {
@@ -119,8 +119,8 @@ func TestRetry(t *testing.T) {
 		elapsed := time.Since(startTime)
 		assert.Equal(t, assert.AnError, err)
 		assert.Equal(t, wantCount, runCount)
-		assert.GreaterOrEqual(t, elapsed.Milliseconds(), wantSleep.Milliseconds())
-		assert.LessOrEqual(t, elapsed.Milliseconds(), 2*wantSleep.Milliseconds())
+		assert.GreaterOrEqual(t, int64(elapsed), int64(wantSleep))
+		assert.LessOrEqual(t, int64(elapsed), 2*int64(wantSleep))
 	})
 }
 
