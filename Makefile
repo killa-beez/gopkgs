@@ -27,6 +27,16 @@ bin/goimports: bin/gobin
 	bin/gobin golang.org/x/tools/cmd/goimports@$(GOIMPORTS_REF)
 bins += bin/goimports
 
+GENNY_REF := df3d48aa411e8e28498e452e42cc1e40498a9e58
+bin/genny: bin/gobin
+	GOBIN=${CURDIR}/bin \
+	bin/gobin github.com/cheekybits/genny@$(GENNY_REF)
+bins += bin/genny
+
+bin/addgeneratedheader: gobuildcache
+	cd tools; ${GOBUILD} -o ../$@ ./addgeneratedheader
+bins += bin/addgeneratedheader
+
 .PHONY: all
 all: $(bins)
 

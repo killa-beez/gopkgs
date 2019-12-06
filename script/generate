@@ -4,7 +4,11 @@ set -e
 
 CDPATH="" cd -- "$(dirname -- "$(dirname -- "$0")")"
 
+make -s bin/addgeneratedheader bin/genny
+
+PATH="$(pwd)/bin:$PATH"
+
 find . -name "go.mod" -exec sh -c '
   cd "$(dirname $0)"
-  go test -race ./...
+  go generate ./...
 ' {} \;
