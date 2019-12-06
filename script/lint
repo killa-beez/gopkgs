@@ -8,10 +8,9 @@ make -s bin/golangci-lint bin/shellcheck
 bin/shellcheck script/*
 
 linter="$(pwd)/bin/golangci-lint"
+export linter
 
-for f in ./*/go.mod; do
-  (
-    cd "$(dirname "$f")"
-    "$linter" run
-  )
-done
+find . -name "go.mod" -exec sh -c '
+  cd "$(dirname $0)"
+  "$linter" run
+' {} \;
